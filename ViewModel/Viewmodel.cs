@@ -23,8 +23,12 @@ namespace ViewModel
             return this; 
         }
 
+
         public void newVaccine(Vaccination vc)
         {
+            
+
+
             if (DB != null)
             {
                 DB.Vacine.Add(vc);

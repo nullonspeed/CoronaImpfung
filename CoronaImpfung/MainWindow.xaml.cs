@@ -61,9 +61,10 @@ namespace CoronaImpfung
         private void buttoneinfuegen_Click(object sender, RoutedEventArgs e)
         {
             countofvaccines++;
-            //context.Vacine.Add(new Vaccination() {AdverseEffects="test",VaccinationID=countofvaccines, VacDateTime = test3.DisplayDate, DoctorDoctorID=((Doctor)test2.SelectedItem).DoctorID, PatientPatientID = ((DisplayPatient)test4.SelectedItem).patientID , VacineVacineID = ((Vacine)test1.SelectedItem).VacineID});
-            ((Viewmodel)this.DataContext).newVaccine(new Vaccination() { AdverseEffects = "test", VaccinationID = countofvaccines, VacDateTime = test3.DisplayDate, DoctorDoctorID = ((Doctor)test2.SelectedItem).DoctorID, PatientPatientID = ((DisplayPatient)test4.SelectedItem).patientID, VacineVacineID = ((Vacine)test1.SelectedItem).VacineID });
-
+            context.Vacine.Add(new Vaccination() {AdverseEffects="test", VacDateTime = test3.DisplayDate, DoctorDoctorID=((Doctor)test2.SelectedItem).DoctorID, PatientPatientID = ((DisplayPatient)test4.SelectedItem).patientID , VacineVacineID = ((Vacine)test1.SelectedItem).VacineID});
+            //((Viewmodel)this.DataContext).newVaccine(new Vaccination() { AdverseEffects = "test", VaccinationID = countofvaccines, VacDateTime = test3.DisplayDate, DoctorDoctorID = ((Doctor)test2.SelectedItem).DoctorID, PatientPatientID = ((DisplayPatient)test4.SelectedItem).patientID, VacineVacineID = ((Vacine)test1.SelectedItem).VacineID });
+            context.SaveChanges();
+            this.DataContext = new Viewmodel().Init(context);
         }
     }
 }
