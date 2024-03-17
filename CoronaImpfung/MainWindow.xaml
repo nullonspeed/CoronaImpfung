@@ -1,0 +1,53 @@
+﻿<Window x:Class="CoronaImpfung.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoronaImpfung"
+        xmlns:MVVMLib="clr-namespace:ViewModel;assembly=ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <MVVMLib:Viewmodel></MVVMLib:Viewmodel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Impfstoffe:"></Label>
+            <ComboBox Name="test1" Grid.Row="1" ItemsSource="{Binding VacineList}" Text="Alle Impfstoffe Charge:" SelectedItem="{Binding SelectedVacine}" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+            <Label Content="Ärzte:" Grid.Row="2"></Label>
+            <ComboBox Name="test2" Grid.Row="3" ItemsSource="{Binding Doctors}" SelectedItem="{Binding SelectedDoctor}" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+            <Label Content="Impfdatum:" Grid.Row="4"></Label>
+            <DatePicker Name="test3" Grid.Row="5" SelectedDateChanged="ComboBox_SelectionChanged"></DatePicker>
+            <Button Grid.Row="6" Content="Impfung einfügen" IsEnabled="False" Name="buttoneinfuegen" Click="buttoneinfuegen_Click"></Button>
+            
+        </Grid>
+        
+        <DataGrid Name="test4" Grid.Column="1" ItemsSource="{Binding Patienten}" SelectedItem="{Binding SelectedPatient}" AutoGenerateColumns="False" SelectionChanged="ComboBox_SelectionChanged"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Firstname}" Header="Vorname"/>
+                <DataGridTextColumn Binding="{Binding Lastname}" Header="Nachname"/>
+                <DataGridCheckBoxColumn Binding="{Binding isMale}" Header="IstMännlich"/>
+                <DataGridTextColumn Binding="{Binding DateOfBirth}" Header="Geburtsdatum"/>
+                <DataGridTextColumn Binding="{Binding countVacines}" Header="AnzahlImpungen"/>
+               
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+    </Grid>
+</Window>
